@@ -18,7 +18,7 @@ Children:
           default: '0'
           name: Reverse Channel (Solenoid)
           validators: null
-          value: '3'
+          value: '1'
         Forward Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: [CTREPCM, REVPH]
           default: CTREPCM
@@ -30,7 +30,7 @@ Children:
           default: '0'
           name: Forward Channel (Solenoid)
           validators: [Solenoid]
-          value: '2'
+          value: '0'
       Base: Double Solenoid
       Name: Double Solenoid 1
     Properties:
@@ -40,9 +40,11 @@ Children:
         default: []
         name: Default command parameters
         validators: null
-        value: []
+        value:
+        - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: CloseClaw,
+          type: boolean, value: 'false'}
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
+        name: Default Command, type: Command, validators: null, value: Run_Claw}
       Constants: !!robotbuilder.data.properties.ConstantsProperty
         default: []
         name: Constants
@@ -108,7 +110,7 @@ Children:
           - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: CloseClaw,
             type: boolean, value: 'false'}
         Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Send to SmartDashboard, validators: null, value: false}
+          name: Send to SmartDashboard, validators: null, value: true}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: &id002 [A, B, X, Y, Back, Start, LeftBumper, RightBumper, LeftStick,
             RightStick]
@@ -152,7 +154,7 @@ Children:
           - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: CloseClaw,
             type: boolean, value: 'true'}
         Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Send to SmartDashboard, validators: null, value: false}
+          name: Send to SmartDashboard, validators: null, value: true}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: A
@@ -183,7 +185,7 @@ Children:
         default: 1
         name: Number
         validators: [Joystick]
-        value: '0'
+        value: '1'
     Base: Xbox Controller
     Name: driverJoystick
   Properties: {}

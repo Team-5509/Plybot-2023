@@ -56,6 +56,12 @@ public class Run_Claw extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        if (m_CloseClaw) {
+            m_pnuematic_Claw.clawClose();
+        }
+        else {
+            m_pnuematic_Claw.clawOpen();
+        }
     }
 
     // Called once the command ends or is interrupted.
