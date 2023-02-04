@@ -62,6 +62,29 @@ public class HaloDrive extends CommandBase {
         double leftSpeed = finesse * RobotContainer.getInstance().getdriverJoystick().getRawAxis(5);
         double rightSpeed = finesse *RobotContainer.getInstance().getdriverJoystick().getRawAxis(1);
         
+        
+        // delinearization. change exponent to increase/ decrease power
+        int exponent = 3;
+        leftSpeed = Math.pow(leftSpeed, exponent);
+        rightSpeed = Math.pow(rightSpeed, exponent);
+
+        //making deadzone
+        double deadband = 0.2;
+        if(Math.abs(leftSpeed) < deadband)
+        {
+            leftSpeed = 0;
+        }
+
+        if(Math.abs(rightSpeed) < deadband)
+        {
+            rightSpeed = 0;
+        }
+
+        
+
+
+
+
         m_drivetrain.driveTank(leftSpeed, rightSpeed);
         SmartDashboard.putNumber("leftSpeed", rightSpeed);
         SmartDashboard.putNumber("rightSpeed", leftSpeed);
