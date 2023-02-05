@@ -109,8 +109,8 @@ button_CloseClaw.onTrue(new Run_Claw(true, m_pnuematic_Claw).withInterruptBehavi
                         SmartDashboard.putData("Button_CloseClaw",new Run_Claw(true, m_pnuematic_Claw));
                         
 final JoystickButton button_ShiftGear = new JoystickButton(driverJoystick, XboxController.Button.kLeftBumper.value);        
-button_ShiftGear.toggleOnTrue(new Shift_Gear(false, m_gear_Shift).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-                        SmartDashboard.putData("Button_ShiftGear",new Shift_Gear(false, m_gear_Shift));
+button_ShiftGear.toggleOnTrue(new Shift_Gear(true, m_gear_Shift).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+                        SmartDashboard.putData("Button_ShiftGear",new Shift_Gear(true, m_gear_Shift));
                         
 final JoystickButton button_OpenClaw = new JoystickButton(driverJoystick, XboxController.Button.kB.value);        
 button_OpenClaw.onTrue(new Run_Claw(false, m_pnuematic_Claw).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
