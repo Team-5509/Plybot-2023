@@ -58,6 +58,17 @@ public class Drivetrain extends SubsystemBase {
         
     }
 
+    public double getDrivetrainVoltage()
+    {
+        return rightMotor.getAppliedOutput();
+    }
+
+    public double getMotorControllerVoltage()
+    {
+        return rightMotor.getBusVoltage();
+    }
+
+
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
