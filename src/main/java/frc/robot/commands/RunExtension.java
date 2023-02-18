@@ -64,8 +64,9 @@ public class RunExtension extends CommandBase {
     @Override
     public void execute() {
         double speed = RobotContainer.getInstance().getAuxController().getRawAxis(1);
-        if (endSwitch.get() && speed>0 || startSwitch.get() && speed<0){ //assumes + speed extends
+        if (endSwitch.get() && speed>0 || startSwitch.get() && speed<0){ //+ speed extends
             m_armExtension.extend(0);
+
         } else {
             m_armExtension.extend(speed);
         }
