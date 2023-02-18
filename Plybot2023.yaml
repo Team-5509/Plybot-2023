@@ -3,33 +3,51 @@ Version 5.0
 ---
 Children:
 - Children:
+  - Children: []
+    Properties:
+      Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Send to SmartDashboard, validators: null, value: false}
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: HaloDrive}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: []
+    Base: Subsystem
+    Name: Drivetrain
   - Children:
     - Children: []
       Properties:
         Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
-            '12', '13', '14', '15', '16', '17', '18', '19', '20']
+          choices: &id001 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
           default: '0'
           name: Forward Module (Solenoid)
-          validators: [Solenoid]
+          validators: &id002 [Solenoid]
           value: '0'
         Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          choices: &id003 ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
           name: Reverse Channel (Solenoid)
           validators: null
           value: '1'
         Forward Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: [CTREPCM, REVPH]
+          choices: &id004 [CTREPCM, REVPH]
           default: CTREPCM
           name: Forward Module Type (Solenoid)
           validators: null
           value: CTREPCM
         Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          choices: &id005 ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
           name: Forward Channel (Solenoid)
-          validators: [Solenoid]
+          validators: &id006 [Solenoid]
           value: '0'
       Base: Double Solenoid
       Name: Double Solenoid 1
@@ -87,6 +105,72 @@ Children:
         value: []
     Base: Subsystem
     Name: Air_Compressor
+  - Children:
+    - Children: []
+      Properties:
+        Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: '0'
+          name: Forward Module (Solenoid)
+          validators: *id002
+          value: '0'
+        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id003
+          default: '0'
+          name: Reverse Channel (Solenoid)
+          validators: null
+          value: '3'
+        Forward Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id004
+          default: CTREPCM
+          name: Forward Module Type (Solenoid)
+          validators: null
+          value: CTREPCM
+        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id005
+          default: '0'
+          name: Forward Channel (Solenoid)
+          validators: *id006
+          value: '2'
+      Base: Double Solenoid
+      Name: Double Solenoid 2
+    Properties:
+      Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Send to SmartDashboard, validators: null, value: false}
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: buttonToggled,
+          type: boolean, value: 'false'}
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: Shift_Gear}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: []
+    Base: Subsystem
+    Name: Gear_Shift
+  - Children: []
+    Properties:
+      Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Send to SmartDashboard, validators: null, value: false}
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: displayInRange}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: []
+    Base: Subsystem
+    Name: Limelight
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -95,7 +179,7 @@ Children:
     - Children: []
       Properties:
         Interruptible: !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id001 [CancelSelf, CancelIncoming]
+          choices: &id007 [CancelSelf, CancelIncoming]
           default: CancelSelf
           name: Interruptible
           validators: null
@@ -112,7 +196,7 @@ Children:
         Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
           name: Send to SmartDashboard, validators: null, value: true}
         Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id002 [A, B, X, Y, Back, Start, LeftBumper, RightBumper, LeftStick,
+          choices: &id008 [A, B, X, Y, Back, Start, LeftBumper, RightBumper, LeftStick,
             RightStick]
           default: A
           name: Button
@@ -122,14 +206,14 @@ Children:
           default: None
           name: Command
           type: Command
-          validators: &id003 [TypeDropdownSelected]
+          validators: &id009 [TypeDropdownSelected]
           value: Run_Claw
         Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
           name: Timeout, validators: null, value: 0.0}
         Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
           name: Add Timeout, validators: null, value: false}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id004 [onTrue, onFalse, whileTrue, whileFalse, toggleOnTrue, toggleOnFalse]
+          choices: &id010 [onTrue, onFalse, whileTrue, whileFalse, toggleOnTrue, toggleOnFalse]
           default: onTrue
           name: When to Run
           validators: null
@@ -139,7 +223,50 @@ Children:
     - Children: []
       Properties:
         Interruptible: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
+          choices: *id007
+          default: CancelSelf
+          name: Interruptible
+          validators: null
+          value: CancelSelf
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: driverJoystick}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: buttonToggled,
+            type: boolean, value: 'true'}
+        Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Send to SmartDashboard, validators: null, value: true}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: A
+          name: Button
+          validators: null
+          value: LeftBumper
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id009
+          value: Shift_Gear
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: onTrue
+          name: When to Run
+          validators: null
+          value: toggleOnTrue
+      Base: Xbox Button
+      Name: Button_ShiftGear
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
           default: CancelSelf
           name: Interruptible
           validators: null
@@ -156,7 +283,7 @@ Children:
         Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
           name: Send to SmartDashboard, validators: null, value: true}
         Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id002
+          choices: *id008
           default: A
           name: Button
           validators: null
@@ -165,14 +292,14 @@ Children:
           default: None
           name: Command
           type: Command
-          validators: *id003
+          validators: *id009
           value: Run_Claw
         Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
           name: Timeout, validators: null, value: 0.0}
         Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
           name: Add Timeout, validators: null, value: false}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id004
+          choices: *id010
           default: onTrue
           name: When to Run
           validators: null
@@ -192,6 +319,52 @@ Children:
   Base: OI
   Name: Operator Interface
 - Children:
+  - Children: []
+    Properties:
+      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Autonomous Selection, validators: null, value: false}
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Run When Disabled, validators: null, value: false}
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Drivetrain}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: []
+        name: Parameter presets
+        validators: null
+        value: []
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: HaloDrive
+  - Children: []
+    Properties:
+      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Autonomous Selection, validators: null, value: false}
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: buttonToggled,
+          type: boolean}
+      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Run When Disabled, validators: null, value: false}
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Gear_Shift}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: []
+        name: Parameter presets
+        validators: null
+        value: []
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: Shift_Gear
   - Children: []
     Properties:
       Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -251,14 +424,36 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Air_Compressor}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id005 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id005
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
     Name: Compressor_On
+  - Children: []
+    Properties:
+      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Autonomous Selection, validators: null, value: false}
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Run When Disabled, validators: null, value: false}
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Limelight}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: []
+        name: Parameter presets
+        validators: null
+        value: []
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: displayInRange
   Properties: {}
   Base: Commands
   Name: Commands
