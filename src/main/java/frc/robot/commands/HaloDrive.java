@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import java.util.function.DoubleSupplier;
 
+
 import frc.robot.RobotContainer;
 
 
@@ -82,7 +83,7 @@ public class HaloDrive extends CommandBase {
         rightSpeed = Math.pow(rightSpeed, exponent);
 
         //making deadzone
-        double deadband = 0.2;
+        double deadband = 0.3;
         if(Math.abs(leftSpeed) < deadband)
         {
             leftSpeed = 0;
@@ -101,28 +102,9 @@ public class HaloDrive extends CommandBase {
         m_drivetrain.driveTank(leftSpeed, rightSpeed);
         SmartDashboard.putNumber("leftSpeed", rightSpeed);
         SmartDashboard.putNumber("rightSpeed", leftSpeed);
-        SmartDashboard.putNumber("Halo 0", RobotContainer.getInstance().getdriverJoystick().getRawAxis(0));
-        SmartDashboard.putNumber("Halo 1", RobotContainer.getInstance().getdriverJoystick().getRawAxis(1));
-        SmartDashboard.putNumber("Halo 2", RobotContainer.getInstance().getdriverJoystick().getRawAxis(2));
-        SmartDashboard.putNumber("Halo 3", RobotContainer.getInstance().getdriverJoystick().getRawAxis(3));
-        SmartDashboard.putNumber("Halo 4", RobotContainer.getInstance().getdriverJoystick().getRawAxis(4));
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+        SmartDashboard.putNumber("drive train voltage", m_drivetrain.getDrivetrainVoltage());
+        SmartDashboard.putNumber("can bus voltage", m_drivetrain.getMotorControllerVoltage());
+        SmartDashboard.putNumber("voltage used", m_drivetrain.getDrivetrainVoltage()*m_drivetrain.getMotorControllerVoltage());
     }
 
     // Called once the command ends or is interrupted.
