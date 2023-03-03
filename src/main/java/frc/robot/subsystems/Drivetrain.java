@@ -58,7 +58,6 @@ public class Drivetrain extends SubsystemBase {
         rightMotor = new CANSparkMax(2, MotorType.kBrushless);
 
         leftMotor.setInverted(true);
-        
         differentialDrive = new DifferentialDrive(leftMotor, rightMotor);
         
     }
